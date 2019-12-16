@@ -4,6 +4,7 @@ import { Container } from "semantic-ui-react";
 import { BrowserRouter, Route } from "react-router-dom";
 import NewQuestion from "./NewQuestion";
 import DashBoard from "./LeadersDashBoard";
+import HomePage from "./HomePage";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <div className="App">
         <Container>
           <NavBar />
+          <Route path="/" component={HomePage} />
           <Route path="/add" component={NewQuestion} />
           <Route path="/leaderboard" component={DashBoard} />
         </Container>
