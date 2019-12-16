@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 import { Menu, Responsive, Image, Button } from "semantic-ui-react";
+import { NavLink } from "react-router-dom";
 
 class NavBar extends Component {
   render() {
     return (
       <Responsive as={Menu} minWidth={651} color="green" pointing>
-        <Menu.Item name="Home" />
-        <Menu.Item name="New Question" />
-        <Menu.Item name="Leader Dashboard" />
+        <Menu.Item name="Home" as={NavLink} to="/" exact />
+        <Menu.Item name="New Question" as={NavLink} to="/add" />
+        <Menu.Item name="Leader Dashboard" as={NavLink} to="/leaderboard" />
         <Menu.Menu position="right">
           <Menu.Item>
             <span>
