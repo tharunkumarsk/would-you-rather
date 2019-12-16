@@ -1,9 +1,13 @@
 import React from "react";
 import NavBar from "./NavBar";
+import { Container } from "semantic-ui-react";
+
 function App() {
   return (
     <div className="App">
-      <NavBar />
+      <Container>
+        <NavBar />
+      </Container>
     </div>
   );
 }
