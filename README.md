@@ -1,3 +1,24 @@
+
+## Installation
+
+Clone the repository,and use NPM to install the dependencies.
+
+npm install
+
+## To start the application
+
+- `npm start`
+
+This automatically opens the below URL with app running
+
+- [http://localhost:3000](http://localhost:3000)
+
+
+### Project Plan
+
+![Plan](./images/Project_Plan.jpg)
+
+
 ### App Functionality
 
 The person using your application should have a way of impersonating/logging in as an existing user. (This could be as simple as having a login box that appears at the root of the application that lets the user select a name from the list of existing users. Alternatively, you could create your own account creation process to allow a user to sign up for an account.) Your application should work correctly regardless of which user is selected. Once the user logs in, the home page should be shown.
@@ -37,17 +58,3 @@ But how can we know how many questions each user has asked and answered? Let’s
 Users should be ordered in descending order based on the sum of the number of questions they’ve asked and the number of questions they’ve answered. The more questions you ask and answer, the higher up you move.
 
 The user should be able to navigate to the leaderboard, to a specific question, and to the form that allows the user to create a new poll both from within the app and by typing in the address into the address bar. To make sure we’re showing the data that is relevant to the user, the application should require the user to be signed in order to access those pages.
-
-## Installation
-
-Clone the repository,and use NPM to install the dependencies.
-
-npm install
-
-## To start the application
-
-- `npm start`
-
-This automatically opens the below URL with app running
-
-- [http://localhost:3000](http://localhost:3000)
