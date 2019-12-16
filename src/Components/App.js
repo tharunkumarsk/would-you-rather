@@ -1,7 +1,8 @@
 import React from "react";
 import NavBar from "./NavBar";
 import { Container } from "semantic-ui-react";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Route } from "react-router-dom";
+import NewQuestion from "./NewQuestion";
 
 function App() {
   return (
@@ -9,6 +10,7 @@ function App() {
       <div className="App">
         <Container>
           <NavBar />
+          <Route path="/add" component={NewQuestion} />
         </Container>
       </div>
     </BrowserRouter>
