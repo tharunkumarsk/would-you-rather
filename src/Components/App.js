@@ -3,6 +3,7 @@ import NavBar from "./NavBar";
 import { Container } from "semantic-ui-react";
 import { BrowserRouter, Route } from "react-router-dom";
 import NewQuestion from "./NewQuestion";
+import DashBoard from "./LeadersDashBoard";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <Container>
           <NavBar />
           <Route path="/add" component={NewQuestion} />
+          <Route path="/leaderboard" component={DashBoard} />
         </Container>
       </div>
     </BrowserRouter>
