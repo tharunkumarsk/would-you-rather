@@ -11,7 +11,7 @@ const panes = [
     ),
     render: () => (
       <Tab.Pane attached={false}>
-        <UserInformation />
+        <UserInformation answered={false} btnContent="Answer" />
       </Tab.Pane>
     )
   },
@@ -23,7 +23,7 @@ const panes = [
     ),
     render: () => (
       <Tab.Pane attached={false}>
-        <UserInformation />
+        <UserInformation answered={true} btnContent="View Result" />
       </Tab.Pane>
     )
   }

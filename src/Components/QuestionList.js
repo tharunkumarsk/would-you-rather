@@ -3,6 +3,8 @@ import { Header, Button, Grid } from "semantic-ui-react";
 
 export class QuestionList extends Component {
   render() {
+    const { answered, btnContent } = this.props;
+    const color = answered === true ? "green" : "red";
     return (
       <Grid.Column width={12}>
         <Header as="h5" textAlign="left">
@@ -13,7 +15,7 @@ export class QuestionList extends Component {
           <br />
           or...
         </p>
-        <Button color="green" size="medium" fluid content="Answer" />
+        <Button color={color} size="medium" fluid content={btnContent} />
       </Grid.Column>
     );
   }

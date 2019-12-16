@@ -4,6 +4,7 @@ import QuestionList from "./QuestionList";
 
 class UserInformation extends Component {
   render() {
+    const { answered, btnContent } = this.props;
     return (
       <Segment.Group>
         <Header as="h5" textAlign="left" block attached="top">
@@ -14,7 +15,7 @@ class UserInformation extends Component {
             <Grid.Column width={4}>
               <Image src="https://image.flaticon.com/icons/png/512/145/145843.png" />
             </Grid.Column>
-            <QuestionList />
+            <QuestionList answered={answered} btnContent={btnContent} />
           </Grid.Row>
         </Grid>
       </Segment.Group>
