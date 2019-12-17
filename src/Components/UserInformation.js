@@ -28,13 +28,10 @@ class UserInformation extends Component {
   }
 }
 function mapStateToProps({ questions }, { questionId }) {
-  console.log("questions........." + questions);
-  console.log("questionId........." + questionId);
   let question;
   if (questionId !== undefined) {
     question = questions[questionId];
   }
-  console.log("question........." + question);
   return {
     question
   };
