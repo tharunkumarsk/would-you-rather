@@ -8,10 +8,11 @@ const AUTH_USER = "tylermcginnis";
 
 export function handlePageLoadData() {
   return dispatch => {
-    return getPageLoadData().then(({ users, questions }) => {
+    return getPageLoadData().then(({ users, questions, id }) => {
+      debugger;
+      dispatch(setAuthUserID(id));
       dispatch(receiveQuestions(questions));
       dispatch(receivedUsers(users));
-      dispatch(setAuthUserID(AUTH_USER));
     });
   };
 }
@@ -20,7 +21,8 @@ function getPageLoadData() {
   return Promise.all([_getUsers(), _getQuestions()]).then(
     ([users, questions]) => ({
       users,
-      questions
+      questions,
+      id: AUTH_USER
     })
   );
 }

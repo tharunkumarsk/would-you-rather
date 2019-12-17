@@ -63,7 +63,13 @@ export class HomePage extends Component {
     );
   }
 }
-function mapStateToProps({ questions }) {
+function mapStateToProps({ authUser, users, questions }) {
+  console.log("authUser--------" + authUser);
+  console.log("users--------" + users);
+  //As user list response has the answers which means those question Ids comes under answered segment
+
+  //const answeredQuestionIds = Object.keys(users[authUser].answers);
+
   return {
     questions
   };
