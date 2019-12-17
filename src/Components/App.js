@@ -14,7 +14,6 @@ class App extends React.Component {
     this.props.handlePageLoadData();
   };
   render() {
-    const { authUser } = this.props;
     return (
       <BrowserRouter>
         <div className="App">
