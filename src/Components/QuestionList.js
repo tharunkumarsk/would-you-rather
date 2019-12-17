@@ -14,7 +14,7 @@ export class QuestionList extends Component {
   };
 
   render() {
-    const { answered, btnContent } = this.props;
+    const { question, answered, btnContent } = this.props;
     const color = answered === true ? "green" : "red";
 
     if (this.state.answering === true) {
@@ -27,7 +27,7 @@ export class QuestionList extends Component {
           Would you rather
         </Header>
         <p style={{ textAlign: "center" }}>
-          choose testing
+          {question.optionOne.text}
           <br />
           or...
         </p>

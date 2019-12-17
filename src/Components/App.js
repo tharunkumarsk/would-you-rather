@@ -11,7 +11,7 @@ import { handlePageLoadData } from "../Actions/shared";
 
 class App extends React.Component {
   componentDidMount = () => {
-    this.props.dispatch(handlePageLoadData());
+    this.props.handlePageLoadData();
   };
   render() {
     return (
@@ -30,4 +30,10 @@ class App extends React.Component {
   }
 }
 
-export default connect()(App);
+function mapStateToProps({ authUser }) {
+  return {
+    authUser
+  };
+}
+
+export default connect(mapStateToProps, { handlePageLoadData })(App);
