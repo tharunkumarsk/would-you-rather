@@ -50,7 +50,7 @@ const panes = allQuestions => {
 
 export class HomePage extends Component {
   render() {
-    const { questions, length } = this.props;
+    const { questions } = this.props;
     return (
       <Grid columns={1} centered>
         <Grid.Column width={10}>
@@ -65,8 +65,7 @@ export class HomePage extends Component {
 }
 function mapStateToProps({ questions }) {
   return {
-    questions,
-    length: questions.length
+    questions
   };
 }
 
