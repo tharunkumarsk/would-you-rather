@@ -16,6 +16,7 @@ export class QuestionList extends Component {
   render() {
     const { question, answered, btnContent } = this.props;
     const color = answered === true ? "green" : "red";
+    const orColor = answered === true ? "red" : "green";
 
     if (this.state.answering === true) {
       return <Redirect push to="/questions/123" />;
@@ -29,8 +30,10 @@ export class QuestionList extends Component {
         <p style={{ textAlign: "center" }}>
           {question.optionOne.text}
           <br />
-          or...
+          <br />
+          <Button circular color={orColor} content="OR" />
         </p>
+        <p style={{ textAlign: "center" }}>{question.optionTwo.text}</p>
         <Button
           color={color}
           size="medium"
