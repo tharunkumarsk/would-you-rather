@@ -6,17 +6,12 @@ import NewQuestion from "./NewQuestion";
 import DashBoard from "./LeadersDashBoard";
 import HomePage from "./HomePage";
 import AnsweForQuestion from "./AnsweForQuestion";
-import { _getQuestions as getQuestions } from "../utils/_DATA";
+import { connect } from "react-redux";
+import { handlePageLoadData } from "../Actions/shared";
 
 class App extends React.Component {
   componentDidMount = () => {
-    getQuestions()
-      .then(questions => {
-        console.log(questions);
-      })
-      .catch(() => {
-        console.log("error");
-      });
+    this.props.dispatch(handlePageLoadData());
   };
   render() {
     return (
@@ -35,4 +30,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default connect()(App);
