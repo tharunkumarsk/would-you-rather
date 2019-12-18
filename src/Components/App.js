@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import NavBar from "./NavBar";
 import { Container } from "semantic-ui-react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
@@ -9,25 +9,34 @@ import AnsweForQuestion from "./AnsweForQuestion";
 import { connect } from "react-redux";
 import { handlePageLoadData } from "../actions/shared";
 import LoadingBar from "react-redux-loading";
+import Login from "./Login";
 
 class App extends React.Component {
   componentDidMount = () => {
     this.props.handlePageLoadData();
   };
   render() {
+    const { authUser } = this.props;
+
     return (
       <BrowserRouter>
         <div className="App">
-          <Container>
-            <NavBar />
-            <LoadingBar />
-            <Switch>
-              <Route exact path="/" component={HomePage} />
-              <Route path="/add" component={NewQuestion} />
-              <Route path="/leaderboard" component={DashBoard} />
-              <Route path="/questions/123" component={AnsweForQuestion} />
-            </Switch>
-          </Container>
+          {authUser === null ? (
+            <Route render={() => <Login />} />
+          ) : (
+            <Fragment>
+              <LoadingBar />
+              <Container>
+                <NavBar />
+                <Switch>
+                  <Route exact path="/" component={HomePage} />
+                  <Route path="/add" component={NewQuestion} />
+                  <Route path="/leaderboard" component={DashBoard} />
+                  <Route path="/questions/123" component={AnsweForQuestion} />
+                </Switch>
+              </Container>
+            </Fragment>
+          )}
         </div>
       </BrowserRouter>
     );
