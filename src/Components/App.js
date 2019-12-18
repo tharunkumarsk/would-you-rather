@@ -7,7 +7,7 @@ import DashBoard from "./LeadersDashBoard";
 import HomePage from "./HomePage";
 import AnsweForQuestion from "./AnsweForQuestion";
 import { connect } from "react-redux";
-import { handlePageLoadData } from "../Actions/shared";
+import { handlePageLoadData } from "../actions/shared";
 
 class App extends React.Component {
   componentDidMount = () => {

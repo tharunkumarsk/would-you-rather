@@ -9,7 +9,6 @@ const AUTH_USER = "tylermcginnis";
 export function handlePageLoadData() {
   return dispatch => {
     return getPageLoadData().then(({ users, questions, id }) => {
-      debugger;
       dispatch(setAuthUserID(id));
       dispatch(receiveQuestions(questions));
       dispatch(receivedUsers(users));

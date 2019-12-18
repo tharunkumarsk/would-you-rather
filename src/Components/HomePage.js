@@ -1,22 +1,24 @@
-import React, { Component } from "./node_modules/react";
-import { Grid, Tab, Menu, Label } from "./node_modules/semantic-ui-react";
+import React, { Component } from "react";
+import { Grid, Tab, Menu, Label } from "semantic-ui-react";
 import UserInformation from "./UserInformation";
-import { connect } from "./node_modules/react-redux";
+import { connect } from "react-redux";
 
 const panes = allQuestions => {
+  debugger;
   return [
     {
       menuItem: (
         <Menu.Item key="Unanswered">
-          Unanswered<Label color="red">10</Label>
+          Unanswered
+          <Label color="red">{allQuestions.unAnsweredQuestions.length}</Label>
         </Menu.Item>
       ),
       render: () => (
         <Tab.Pane attached={false}>
-          {Object.keys(allQuestions).map(question => (
+          {allQuestions.unAnsweredQuestions.map(question => (
             <UserInformation
-              key={question}
-              questionId={question}
+              key={question.id}
+              questionId={question.id}
               question={question}
               answered={false}
               btnContent="Answer"
@@ -28,15 +30,16 @@ const panes = allQuestions => {
     {
       menuItem: (
         <Menu.Item key="Answered">
-          Answered<Label color="green">10</Label>
+          Answered
+          <Label color="green">{allQuestions.answeredQuestions.length}</Label>
         </Menu.Item>
       ),
       render: () => (
         <Tab.Pane attached={false}>
-          {Object.keys(allQuestions).map(question => (
+          {allQuestions.answeredQuestions.map(question => (
             <UserInformation
-              key={question}
-              questionId={question}
+              key={question.id}
+              questionId={question.id}
               question={question}
               answered={true}
               btnContent="View Result"
@@ -54,25 +57,41 @@ export class HomePage extends Component {
     return (
       <Grid columns={1} centered>
         <Grid.Column width={10}>
-          <Tab
-            menu={{ pointing: true, fluid: true, widths: 2, color: "red" }}
-            panes={panes(questions)}
-          />
+          {questions &&
+          questions.answeredQuestions &&
+          questions.unAnsweredQuestions ? (
+            <Tab
+              menu={{ pointing: true, fluid: true, widths: 2, color: "red" }}
+              panes={panes(questions)}
+            />
+          ) : null}
         </Grid.Column>
       </Grid>
     );
   }
 }
 function mapStateToProps({ authUser, users, questions }) {
-  console.log("authUser--------" + authUser);
-  console.log("users--------" + users);
+  let answeredQuestions, unAnsweredQuestions;
   //As user list response has the answers which means those question Ids comes under answered segment
 
-  //const answeredQuestionIds = Object.keys(users[authUser].answers);
-
-  return {
-    questions
-  };
+  let answeredQuestionIds = null;
+  if (authUser && users) {
+    answeredQuestionIds = Object.keys(users["tylermcginnis"].answers);
+    answeredQuestions = Object.values(questions).filter(
+      question => !answeredQuestionIds.includes(question.id)
+    );
+    unAnsweredQuestions = Object.values(questions).filter(question =>
+      answeredQuestionIds.includes(question.id)
+    );
+    return {
+      questions: {
+        answeredQuestions,
+        unAnsweredQuestions
+      }
+    };
+  } else {
+    return {};
+  }
 }
 
 export default connect(mapStateToProps)(HomePage);
