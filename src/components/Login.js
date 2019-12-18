@@ -12,7 +12,6 @@ class Login extends Component {
   };
 
   handleSubmit = e => {
-    debugger;
     e.preventDefault();
     this.props.dispatch(setAuthUserID(this.state.selectedUser));
   };

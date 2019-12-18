@@ -2,8 +2,14 @@ import React, { Component } from "react";
 import { Menu, Responsive, Image, Button } from "semantic-ui-react";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
+import { setAuthUserID } from "../actions/authUser";
 
 class NavBar extends Component {
+  handleLogout = e => {
+    e.preventDefault();
+    this.props.dispatch(setAuthUserID(null));
+  };
+
   render() {
     const { users, authUser } = this.props;
 
