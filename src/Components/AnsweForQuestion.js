@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component } from "./node_modules/react";
 import {
   Header,
   Segment,
@@ -7,7 +7,7 @@ import {
   Button,
   Form,
   Radio
-} from "semantic-ui-react";
+} from "./node_modules/semantic-ui-react";
 
 class AnsweForQuestion extends Component {
   render() {

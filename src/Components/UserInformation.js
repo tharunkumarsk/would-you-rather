@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import { Header, Segment, Grid, Image } from "semantic-ui-react";
+import React, { Component } from "./node_modules/react";
+import { Header, Segment, Grid, Image } from "./node_modules/semantic-ui-react";
 import QuestionList from "./QuestionList";
-import { connect } from "react-redux";
+import { connect } from "./node_modules/react-redux";
 
 class UserInformation extends Component {
   render() {

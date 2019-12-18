@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import { Header, Button, Grid } from "semantic-ui-react";
-import { Redirect } from "react-router-dom";
+import React, { Component } from "./node_modules/react";
+import { Header, Button, Grid } from "./node_modules/semantic-ui-react";
+import { Redirect } from "./node_modules/react-router-dom";
 
 export class QuestionList extends Component {
   state = {

@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import { Grid, Tab, Menu, Label } from "semantic-ui-react";
+import React, { Component } from "./node_modules/react";
+import { Grid, Tab, Menu, Label } from "./node_modules/semantic-ui-react";
 import UserInformation from "./UserInformation";
-import { connect } from "react-redux";
+import { connect } from "./node_modules/react-redux";
 
 const panes = allQuestions => {
   return [
