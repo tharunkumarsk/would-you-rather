@@ -70,18 +70,45 @@ export class HomePage extends Component {
     );
   }
 }
-function mapStateToProps({ authUser, users, questions }) {
-  let answeredQuestions, unAnsweredQuestions;
-  //As user list response has the answers which means those question Ids comes under answered segment
+/**
+ * Filter the answered question from question list
+ * @param {all the answered IDs of the user} ids
+ * @param {list of all question} questions
+ */
+function getAnsweredQuestions(ids, questions) {
+  return Object.values(questions).filter(question => ids.includes(question.id));
+}
 
-  let answeredQuestionIds = null;
+/**
+ * Filter the unanswered question from question list
+ * @param {all the answered IDs of the user} ids
+ * @param {list of all question} questions
+ */
+function getUnansweredQuestions(ids, questions) {
+  return Object.values(questions).filter(
+    question => !ids.includes(question.id)
+  );
+}
+
+function mapStateToProps({ authUser, users, questions }) {
+  let answeredQuestions,
+    unAnsweredQuestions,
+    answeredQuestionIds = null;
+  /**
+   * As user list response has the answers
+   * which means those question IDs comes under answered segment
+   * So get the those question IDs  (answeredQuestionIds)
+   * And filter it form qustion list response
+   */
+
   if (authUser && users) {
-    answeredQuestionIds = Object.keys(users["tylermcginnis"].answers);
-    answeredQuestions = Object.values(questions).filter(
-      question => !answeredQuestionIds.includes(question.id)
-    );
-    unAnsweredQuestions = Object.values(questions).filter(question =>
-      answeredQuestionIds.includes(question.id)
+    answeredQuestionIds = Object.keys(users["johndoe"].answers);
+
+    answeredQuestions = getAnsweredQuestions(answeredQuestionIds, questions);
+
+    unAnsweredQuestions = getUnansweredQuestions(
+      answeredQuestionIds,
+      questions
     );
     return {
       questions: {
@@ -89,9 +116,8 @@ function mapStateToProps({ authUser, users, questions }) {
         unAnsweredQuestions
       }
     };
-  } else {
-    return {};
   }
+  return {};
 }
 
 export default connect(mapStateToProps)(HomePage);
