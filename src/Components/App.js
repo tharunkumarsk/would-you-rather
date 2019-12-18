@@ -9,6 +9,7 @@ import AnsweForQuestion from "./AnsweForQuestion";
 import { connect } from "react-redux";
 import { handlePageLoadData } from "../actions/shared";
 import Login from "./Login";
+import LoadingBar from "react-redux-loading";
 
 class App extends React.Component {
   componentDidMount = () => {
@@ -19,6 +20,7 @@ class App extends React.Component {
 
     return (
       <BrowserRouter>
+        <LoadingBar />
         <div className="App">
           {authUser === null ? (
             <Route render={() => <Login />} />

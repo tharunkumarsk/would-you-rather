@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Form, Grid, Segment, Header } from "semantic-ui-react";
 import { setAuthUserID } from "../actions/authUser";
 import { connect } from "react-redux";
-import LoadingBar from "react-redux-loading";
 
 class Login extends Component {
   state = {
@@ -35,7 +34,6 @@ class Login extends Component {
 
     return (
       <Grid columns={1} padded textAlign="center">
-        <LoadingBar />
         <Grid.Column width={8}>
           <Header as="h4" block attached="top" textAlign="center">
             <Header.Content>

@@ -74,6 +74,7 @@ class HomePage extends Component {
  * @param {all the answered IDs of the user} ids
  * @param {list of all question} questions
  */
+
 function getAnsweredQuestions(ids, questions) {
   return Object.values(questions)
     .filter(question => ids.includes(question.id))
@@ -85,6 +86,7 @@ function getAnsweredQuestions(ids, questions) {
  * @param {all the answered IDs of the user} ids
  * @param {list of all question} questions
  */
+
 function getUnansweredQuestions(ids, questions) {
   return Object.values(questions)
     .filter(question => !ids.includes(question.id))
