@@ -19,7 +19,7 @@ export class QuestionList extends Component {
     const orColor = answered === true ? "red" : "green";
 
     if (this.state.answering === true) {
-      return <Redirect push to="/questions/123" />;
+      return <Redirect push to={`/questions/${question.id}`} />;
     }
 
     return (

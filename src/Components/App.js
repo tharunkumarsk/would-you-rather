@@ -32,7 +32,10 @@ class App extends React.Component {
                   <Route exact path="/" component={HomePage} />
                   <Route path="/add" component={NewQuestion} />
                   <Route path="/leaderboard" component={DashBoard} />
-                  <Route path="/questions/123" component={AnsweForQuestion} />
+                  <Route
+                    path="/questions/:questionId"
+                    component={AnsweForQuestion}
+                  />
                 </Switch>
               </Container>
             </Fragment>
