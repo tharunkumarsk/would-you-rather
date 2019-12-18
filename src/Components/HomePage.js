@@ -76,7 +76,9 @@ export class HomePage extends Component {
  * @param {list of all question} questions
  */
 function getAnsweredQuestions(ids, questions) {
-  return Object.values(questions).filter(question => ids.includes(question.id));
+  return Object.values(questions)
+    .filter(question => ids.includes(question.id))
+    .sort((a, b) => b.timestamp - a.timestamp);
 }
 
 /**
@@ -85,9 +87,9 @@ function getAnsweredQuestions(ids, questions) {
  * @param {list of all question} questions
  */
 function getUnansweredQuestions(ids, questions) {
-  return Object.values(questions).filter(
-    question => !ids.includes(question.id)
-  );
+  return Object.values(questions)
+    .filter(question => !ids.includes(question.id))
+    .sort((a, b) => b.timestamp - a.timestamp);
 }
 
 function mapStateToProps({ authUser, users, questions }) {
