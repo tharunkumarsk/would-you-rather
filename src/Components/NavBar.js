@@ -1,9 +1,12 @@
 import React, { Component } from "react";
 import { Menu, Responsive, Image, Button } from "semantic-ui-react";
 import { NavLink } from "react-router-dom";
+import { connect } from "react-redux";
 
 class NavBar extends Component {
   render() {
+    const { users, authUser } = this.props;
+
     return (
       <Responsive as={Menu} minWidth={651} color="green" pointing>
         <Menu.Item name="Home" as={NavLink} to="/" exact />
@@ -13,13 +16,13 @@ class NavBar extends Component {
           <Menu.Item>
             <span>
               <Image
-                src="https://image.flaticon.com/icons/png/512/145/145843.png"
+                src={users[authUser].avatarURL}
                 avatar
                 spaced="right"
                 verticalAlign="bottom"
               />
             </span>
-            <span>Tharun</span>
+            <span>{users[authUser].name}</span>
           </Menu.Item>
           <Menu.Item>
             <Button
@@ -38,5 +41,11 @@ class NavBar extends Component {
     );
   }
 }
+function mapStateToProps({ users, authUser }) {
+  return {
+    users,
+    authUser
+  };
+}
 
-export default NavBar;
+export default connect(mapStateToProps)(NavBar);
