@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 
 class UserInformation extends Component {
   render() {
-    const { question, answered, btnContent } = this.props;
+    const { author, question, answered, btnContent } = this.props;
     return (
       <Segment.Group>
         <Header as="h5" textAlign="left" block attached="top">
@@ -14,7 +14,7 @@ class UserInformation extends Component {
         <Grid divided padded>
           <Grid.Row>
             <Grid.Column width={4}>
-              <Image src="https://image.flaticon.com/icons/png/512/145/145843.png" />
+              <Image src={author.avatarURL} />
             </Grid.Column>
             <QuestionList
               question={question}
@@ -27,13 +27,15 @@ class UserInformation extends Component {
     );
   }
 }
-function mapStateToProps({ questions }, { questionId }) {
-  let question;
+function mapStateToProps({ users, questions }, { questionId }) {
+  let question, author;
   if (questionId !== undefined) {
     question = questions[questionId];
+    author = users[question.author];
   }
   return {
-    question
+    question,
+    author
   };
 }
 
