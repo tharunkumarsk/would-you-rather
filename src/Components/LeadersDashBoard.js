@@ -43,7 +43,7 @@ export class LeadersDashBoard extends Component {
                     <Header as="h5" block attached="top" content="Score" />
                     <Segment>
                       <Label circular color="green" size="big">
-                        {user.answeredQuestions + user.askedQuestions}
+                        {user.totalQuestions}
                       </Label>
                     </Segment>
                   </Segment.Group>
@@ -57,14 +57,16 @@ export class LeadersDashBoard extends Component {
   }
 }
 function mapStateToProps({ users }) {
-  const userInfo = Object.values(users).map(user => ({
-    id: user.id,
-    name: user.name,
-    avatarURL: user.avatarURL,
-    answeredQuestions: Object.values(user.answers).length,
-    askedQuestions: user.questions.length
-  }));
-
+  const userInfo = Object.values(users)
+    .map(user => ({
+      id: user.id,
+      name: user.name,
+      avatarURL: user.avatarURL,
+      answeredQuestions: Object.values(user.answers).length,
+      askedQuestions: user.questions.length,
+      totalQuestions: Object.values(user.answers).length + user.questions.length
+    }))
+    .sort((a, b) => (a.totalQuestions < b.totalQuestions ? 1 : -1));
   return {
     userInfo
   };

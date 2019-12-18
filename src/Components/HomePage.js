@@ -4,7 +4,6 @@ import UserInformation from "./UserInformation";
 import { connect } from "react-redux";
 
 const panes = allQuestions => {
-  debugger;
   return [
     {
       menuItem: (
