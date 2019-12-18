@@ -8,7 +8,6 @@ import HomePage from "./HomePage";
 import AnsweForQuestion from "./AnsweForQuestion";
 import { connect } from "react-redux";
 import { handlePageLoadData } from "../actions/shared";
-import LoadingBar from "react-redux-loading";
 import Login from "./Login";
 
 class App extends React.Component {
@@ -25,7 +24,6 @@ class App extends React.Component {
             <Route render={() => <Login />} />
           ) : (
             <Fragment>
-              <LoadingBar />
               <Container>
                 <NavBar />
                 <Switch>
