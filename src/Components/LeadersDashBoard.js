@@ -7,31 +7,35 @@ import {
   Label,
   Divider
 } from "semantic-ui-react";
+import { connect } from "react-redux";
 
 export class LeadersDashBoard extends Component {
   render() {
+    const { userInfo } = this.props;
+
     return (
       <Fragment>
-        <Grid columns={1} padded textAlign="center">
-          <Grid.Column width={8}></Grid.Column>
-          <Segment.Group>
+        {userInfo.map((user, id) => (
+          <Segment.Group key={id} compact horizontal>
             <Grid divided padded>
-              <Grid.Row>
+              <Grid.Row width={2}>
                 <Grid.Column width={2} verticalAlign="middle">
-                  <Image src="https://image.flaticon.com/icons/png/512/145/145843.png" />
+                  <Image src={user.avatarURL} />
                 </Grid.Column>
                 <Grid.Column width={10}>
                   <Header as="h3" textAlign="left">
-                    Tharun
+                    {user.name}
                   </Header>
                   <Grid>
                     <Grid.Column width={12}>Answered questions</Grid.Column>
-                    <Grid.Column width={4}>10</Grid.Column>
+                    <Grid.Column width={4}>
+                      {user.answeredQuestions}
+                    </Grid.Column>
                   </Grid>
                   <Divider />
                   <Grid>
                     <Grid.Column width={12}>Created questions</Grid.Column>
-                    <Grid.Column width={4}>5</Grid.Column>
+                    <Grid.Column width={4}>{user.askedQuestions}</Grid.Column>
                   </Grid>
                 </Grid.Column>
                 <Grid.Column width={4} textAlign="center">
@@ -39,7 +43,7 @@ export class LeadersDashBoard extends Component {
                     <Header as="h5" block attached="top" content="Score" />
                     <Segment>
                       <Label circular color="green" size="big">
-                        10
+                        {user.answeredQuestions + user.askedQuestions}
                       </Label>
                     </Segment>
                   </Segment.Group>
@@ -47,10 +51,23 @@ export class LeadersDashBoard extends Component {
               </Grid.Row>
             </Grid>
           </Segment.Group>
-        </Grid>
+        ))}
       </Fragment>
     );
   }
 }
+function mapStateToProps({ users }) {
+  const userInfo = Object.values(users).map(user => ({
+    id: user.id,
+    name: user.name,
+    avatarURL: user.avatarURL,
+    answeredQuestions: Object.values(user.answers).length,
+    askedQuestions: user.questions.length
+  }));
 
-export default LeadersDashBoard;
+  return {
+    userInfo
+  };
+}
+
+export default connect(mapStateToProps)(LeadersDashBoard);
