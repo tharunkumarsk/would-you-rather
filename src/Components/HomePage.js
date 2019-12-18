@@ -50,7 +50,7 @@ const panes = allQuestions => {
   ];
 };
 
-export class HomePage extends Component {
+class HomePage extends Component {
   render() {
     const { questions } = this.props;
     return (
