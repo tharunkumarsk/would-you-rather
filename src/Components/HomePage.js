@@ -2,7 +2,11 @@ import React, { Component } from "react";
 import { Grid, Tab, Menu, Label } from "semantic-ui-react";
 import UserInformation from "./UserInformation";
 import { connect } from "react-redux";
-
+/**
+ * This is the pannel displayed for answered and unanswered questions
+ * And also the content inside the pannel will be rendered by child component
+ * @param {object that contains answered and unanswered questions as array} allQuestions
+ */
 const panes = allQuestions => {
   return [
     {
@@ -56,14 +60,10 @@ class HomePage extends Component {
     return (
       <Grid columns={1} centered>
         <Grid.Column width={10}>
-          {questions &&
-          questions.answeredQuestions &&
-          questions.unAnsweredQuestions ? (
-            <Tab
-              menu={{ pointing: true, fluid: true, widths: 2, color: "red" }}
-              panes={panes(questions)}
-            />
-          ) : null}
+          <Tab
+            menu={{ pointing: true, fluid: true, widths: 2, color: "red" }}
+            panes={panes(questions)}
+          />
         </Grid.Column>
       </Grid>
     );
@@ -104,23 +104,17 @@ function mapStateToProps({ authUser, users, questions }) {
    * And filter it form qustion list response
    */
 
-  if (authUser && users) {
-    answeredQuestionIds = Object.keys(users[authUser].answers);
+  answeredQuestionIds = Object.keys(users[authUser].answers);
 
-    answeredQuestions = getAnsweredQuestions(answeredQuestionIds, questions);
+  answeredQuestions = getAnsweredQuestions(answeredQuestionIds, questions);
 
-    unAnsweredQuestions = getUnansweredQuestions(
-      answeredQuestionIds,
-      questions
-    );
-    return {
-      questions: {
-        answeredQuestions,
-        unAnsweredQuestions
-      }
-    };
-  }
-  return {};
+  unAnsweredQuestions = getUnansweredQuestions(answeredQuestionIds, questions);
+  return {
+    questions: {
+      answeredQuestions,
+      unAnsweredQuestions
+    }
+  };
 }
 
 export default connect(mapStateToProps)(HomePage);

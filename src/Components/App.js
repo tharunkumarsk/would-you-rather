@@ -13,7 +13,7 @@ import LoadingBar from "react-redux-loading";
 
 class App extends React.Component {
   componentDidMount = () => {
-    this.props.handlePageLoadData();
+    this.props.dispatch(handlePageLoadData());
   };
   render() {
     const { authUser } = this.props;
@@ -49,4 +49,4 @@ function mapStateToProps({ authUser }) {
   };
 }
 
-export default connect(mapStateToProps, { handlePageLoadData })(App);
+export default connect(mapStateToProps)(App);
