@@ -103,7 +103,7 @@ function mapStateToProps({ authUser, users, questions }) {
    */
 
   if (authUser && users) {
-    answeredQuestionIds = Object.keys(users["johndoe"].answers);
+    answeredQuestionIds = Object.keys(users[authUser].answers);
 
     answeredQuestions = getAnsweredQuestions(answeredQuestionIds, questions);
 
