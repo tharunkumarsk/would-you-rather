@@ -9,6 +9,7 @@ import {
   Radio
 } from "semantic-ui-react";
 import { connect } from "react-redux";
+import { handleSaveAnswer } from "../actions/users";
 
 class AnsweForQuestion extends Component {
   state = {
@@ -17,6 +18,16 @@ class AnsweForQuestion extends Component {
 
   handleChange = (e, { value }) => {
     this.setState({ selectedOption: value });
+  };
+
+  handleSubmit = e => {
+    e.preventDefault();
+    if (this.state.selectedOption !== "") {
+      const { authUser, question } = this.props;
+      this.props.dispatch(
+        handleSaveAnswer(authUser, question.id, this.state.selectedOption)
+      );
+    }
   };
 
   render() {
@@ -35,7 +46,7 @@ class AnsweForQuestion extends Component {
                 </Grid.Column>
                 <Grid.Column width={12}>
                   <Header as="h4">Would you rather</Header>
-                  <Form>
+                  <Form onSubmit={this.handleSubmit}>
                     <Form.Field>
                       <Radio
                         label={question.optionOne.text}
@@ -79,7 +90,8 @@ function mapStateToProps({ questions, authUser, users }, { match }) {
     user = users[authUser];
     return {
       question,
-      user
+      user,
+      authUser
     };
   }
   return {};
