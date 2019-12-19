@@ -8,7 +8,6 @@ export default function users(state = null, action) {
         ...action.users
       };
     case SAVE_ANSWER:
-      debugger;
       const { authUser, qid, answer } = action;
       console.log("...state,", { ...state });
       return {

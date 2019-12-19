@@ -110,7 +110,6 @@ class GameResult extends Component {
   }
 }
 function mapStateToProps({ questions, authUser, users }, { questionId }) {
-  debugger;
   let question, user;
   if (questions && authUser && users) {
     question = questions[questionId];
