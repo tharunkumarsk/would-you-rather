@@ -1,6 +1,7 @@
 import {
   RECEIVE_QUESTIONS,
-  SAVE_ANSWER_TO_QUESTION
+  SAVE_ANSWER_TO_QUESTION,
+  SAVE_QUESTION_CONTENT
 } from "../actions/questionList";
 
 export default function questions(state = null, action) {
@@ -23,6 +24,13 @@ export default function questions(state = null, action) {
           }
         }
       };
+      case SAVE_QUESTION_CONTENT:
+        const { question } = action;
+  
+        return {
+          ...state,
+          [question.id]: question
+        };
     default:
       return state;
   }
