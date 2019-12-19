@@ -13,10 +13,18 @@ import { connect } from "react-redux";
 class GameResult extends Component {
   render() {
     const { question, user, author } = this.props;
-    const optionOneVotes = question.optionOne.votes.length;
-    const optionTwoVotes = question.optionTwo.votes.length;
-    const votesTotal = optionOneVotes + optionTwoVotes;
+    const optionOneVotesCount = question.optionOne.votes.length;
+    const optionTwoVotesCount = question.optionTwo.votes.length;
+    const totalVotes = optionOneVotesCount + optionTwoVotesCount;
     const yourVote = user.answers[question.id];
+
+    let primary = "";
+    if (optionOneVotesCount > optionTwoVotesCount) {
+      primary = "option1";
+    } else if (optionTwoVotesCount > optionOneVotesCount) {
+      primary = "option2";
+    }
+
     return (
       <Fragment>
         <Segment.Group compact horizontal>
@@ -40,11 +48,14 @@ class GameResult extends Component {
                   </Grid.Column>
                   <Grid.Column width={8}>
                     <Progress
-                      percent={((optionOneVotes / votesTotal) * 100).toFixed(2)}
+                      percent={(
+                        (optionOneVotesCount / totalVotes) *
+                        100
+                      ).toFixed(2)}
                       progress
-                      color="red"
+                      color={primary === "option1" ? "green" : "red"}
                     >
-                      {optionOneVotes} out of {votesTotal} votes
+                      {optionOneVotesCount} out of {totalVotes} votes
                     </Progress>
                   </Grid.Column>
                   {yourVote === "optionOne" && (
@@ -69,11 +80,14 @@ class GameResult extends Component {
                   </Grid.Column>
                   <Grid.Column width={8}>
                     <Progress
-                      percent={((optionTwoVotes / votesTotal) * 100).toFixed(2)}
+                      percent={(
+                        (optionTwoVotesCount / totalVotes) *
+                        100
+                      ).toFixed(2)}
                       progress
-                      color="green"
+                      color={primary === "option2" ? "green" : "red"}
                     >
-                      {optionTwoVotes} out of {votesTotal} votes
+                      {optionTwoVotesCount} out of {totalVotes} votes
                     </Progress>
                   </Grid.Column>
                   {yourVote === "optionTwo" && (
