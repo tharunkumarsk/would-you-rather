@@ -10,10 +10,12 @@ import {
 } from "semantic-ui-react";
 import { connect } from "react-redux";
 import { handleSaveAnswer } from "../actions/users";
+import GameResult from "./GameResult";
 
 class AnsweForQuestion extends Component {
   state = {
-    selectedOption: ""
+    selectedOption: "",
+    submitSuccess: false
   };
 
   handleChange = (e, { value }) => {
@@ -27,11 +29,15 @@ class AnsweForQuestion extends Component {
       this.props.dispatch(
         handleSaveAnswer(authUser, question.id, this.state.selectedOption)
       );
+      this.setState({ submitSuccess: true });
     }
   };
 
   render() {
-    const { question, user } = this.props;
+    const { question, user, author } = this.props;
+    if (this.state.submitSuccess === true) {
+      return <GameResult questionId={question.id}></GameResult>;
+    }
     return (
       <Grid columns={2} padded textAlign="center">
         <Grid.Column width={8}>
@@ -42,7 +48,7 @@ class AnsweForQuestion extends Component {
             <Grid divided padded>
               <Grid.Row>
                 <Grid.Column width={4}>
-                  <Image src={user.avatarURL} />
+                  <Image src={author.avatarURL} />
                 </Grid.Column>
                 <Grid.Column width={12}>
                   <Header as="h4">Would you rather</Header>
@@ -88,10 +94,12 @@ function mapStateToProps({ questions, authUser, users }, { match }) {
     const { questionId } = match.params;
     question = questions[questionId];
     user = users[authUser];
+    const author = users[question.author];
     return {
       question,
       user,
-      authUser
+      authUser,
+      author
     };
   }
   return {};
