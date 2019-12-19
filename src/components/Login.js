@@ -19,6 +19,7 @@ class Login extends Component {
   render() {
     let listofUsers;
     const { users } = this.props;
+    const disabled = this.state.selectedUser === "" ? true : false;
     if (users) {
       listofUsers = Object.values(users).map(user => ({
         key: user.id,
@@ -54,7 +55,12 @@ class Login extends Component {
                   onChange={this.onChange}
                   required
                 />
-                <Form.Button content="Login" positive fluid />
+                <Form.Button
+                  content="Login"
+                  positive
+                  fluid
+                  disabled={disabled}
+                />
               </Form>
             ) : null}
           </Segment>
