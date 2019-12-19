@@ -4,12 +4,13 @@ import { Redirect } from "react-router-dom";
 
 export class QuestionList extends Component {
   state = {
-    answering: false
+    action: ""
   };
 
-  handleClick = () => {
+  handleClick = event => {
+    const buttonAction = event.currentTarget.textContent;
     this.setState({
-      answering: true
+      action: buttonAction
     });
   };
 
@@ -18,8 +19,15 @@ export class QuestionList extends Component {
     const color = answered === true ? "green" : "red";
     const orColor = answered === true ? "red" : "green";
 
-    if (this.state.answering === true) {
-      return <Redirect push to={`/questions/${question.id}`} />;
+    if (this.state.action) {
+      return (
+        <Redirect
+          to={{
+            pathname: `/questions/${question.id}`,
+            state: { action: this.state.action }
+          }}
+        />
+      );
     }
 
     return (

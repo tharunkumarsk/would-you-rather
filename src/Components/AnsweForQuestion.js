@@ -34,8 +34,11 @@ class AnsweForQuestion extends Component {
   };
 
   render() {
-    const { question, user, author } = this.props;
-    if (this.state.submitSuccess === true) {
+    const { question, author } = this.props;
+    if (
+      this.state.submitSuccess === true ||
+      this.props.location.state.action === "View Result"
+    ) {
       return <GameResult questionId={question.id}></GameResult>;
     }
     return (
@@ -89,15 +92,13 @@ class AnsweForQuestion extends Component {
   }
 }
 function mapStateToProps({ questions, authUser, users }, { match }) {
-  let question, user;
+  let question;
   if (questions && authUser && users) {
     const { questionId } = match.params;
     question = questions[questionId];
-    user = users[authUser];
     const author = users[question.author];
     return {
       question,
-      user,
       authUser,
       author
     };
