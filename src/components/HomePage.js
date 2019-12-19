@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Grid, Tab, Menu, Label } from "semantic-ui-react";
+import { Grid, Tab, Menu, Label,Header } from "semantic-ui-react";
 import UserInformation from "./UserInformation";
 import { connect } from "react-redux";
 /**
@@ -18,6 +18,9 @@ const panes = allQuestions => {
       ),
       render: () => (
         <Tab.Pane attached={false}>
+          {allQuestions.unAnsweredQuestions.length === 0 &&   <Header as='h4' color='green'>
+          You don't have pending questions
+    </Header>}
           {allQuestions.unAnsweredQuestions.map(question => (
             <UserInformation
               key={question.id}
@@ -39,6 +42,9 @@ const panes = allQuestions => {
       ),
       render: () => (
         <Tab.Pane attached={false}>
+          {allQuestions.answeredQuestions.length === 0 && <Header as='h4' color='red'>
+          You have not answered any questions !
+    </Header>}
           {allQuestions.answeredQuestions.map(question => (
             <UserInformation
               key={question.id}
