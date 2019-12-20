@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Form, Grid, Segment, Header } from "semantic-ui-react";
 import { setAuthUserID } from "../actions/authUser";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 
 class Login extends Component {
   state = {
@@ -12,6 +13,9 @@ class Login extends Component {
   };
 
   handleSubmit = e => {
+    if (this.props.location.pathname === "/add") {
+      this.props.history.push("/");
+    }
     e.preventDefault();
     this.props.dispatch(setAuthUserID(this.state.selectedUser));
   };
@@ -79,4 +83,4 @@ function mapStateToProps({ users }) {
   return {};
 }
 
-export default connect(mapStateToProps)(Login);
+export default withRouter(connect(mapStateToProps)(Login));
