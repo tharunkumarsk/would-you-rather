@@ -96,7 +96,6 @@ class AnsweForQuestion extends Component {
   }
 }
 function mapStateToProps({ questions, authUser, users }, { match }) {
-  debugger;
   let question,
     author,
     idNotFound = false;
