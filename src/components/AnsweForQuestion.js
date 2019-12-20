@@ -11,6 +11,7 @@ import {
 import { connect } from "react-redux";
 import { handleSaveAnswer } from "../actions/users";
 import GameResult from "./GameResult";
+import { Redirect } from "react-router-dom";
 
 class AnsweForQuestion extends Component {
   state = {
@@ -34,7 +35,10 @@ class AnsweForQuestion extends Component {
   };
 
   render() {
-    const { question, author } = this.props;
+    const { question, author, idNotFound } = this.props;
+    if (idNotFound === true) {
+      return <Redirect to="/questions/idnotfound" />;
+    }
     if (
       this.state.submitSuccess === true ||
       this.props.location.state.action === "View Result"
@@ -92,15 +96,23 @@ class AnsweForQuestion extends Component {
   }
 }
 function mapStateToProps({ questions, authUser, users }, { match }) {
-  let question;
+  debugger;
+  let question,
+    author,
+    idNotFound = false;
   if (questions && authUser && users) {
     const { questionId } = match.params;
     question = questions[questionId];
-    const author = users[question.author];
+    if (question) {
+      author = users[question.author];
+    } else {
+      idNotFound = true;
+    }
     return {
       question,
       authUser,
-      author
+      author,
+      idNotFound
     };
   }
   return {};
