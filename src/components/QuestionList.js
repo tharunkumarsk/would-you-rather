@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Header, Button, Grid } from "semantic-ui-react";
 import { Redirect } from "react-router-dom";
+import PropTypes from 'prop-types';
+
 
 export class QuestionList extends Component {
   state = {
@@ -53,5 +55,12 @@ export class QuestionList extends Component {
     );
   }
 }
+
+QuestionList.propTypes = {
+  question:PropTypes.object.isRequired,
+  answered:PropTypes.bool.isRequired,
+  btnContent:PropTypes.string.isRequired
+
+};
 
 export default QuestionList;

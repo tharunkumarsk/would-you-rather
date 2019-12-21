@@ -12,6 +12,8 @@ import { connect } from "react-redux";
 import { handleSaveAnswer } from "../actions/users";
 import GameResult from "./GameResult";
 import { Redirect } from "react-router-dom";
+import PropTypes from 'prop-types';
+
 
 class AnsweForQuestion extends Component {
   state = {
@@ -95,6 +97,16 @@ class AnsweForQuestion extends Component {
     );
   }
 }
+
+AnsweForQuestion.propTypes = {
+  question:PropTypes.object.isRequired,
+  author:PropTypes.object.isRequired,
+  match:PropTypes.object.isRequired,
+  authUser:PropTypes.string.isRequired,
+  idNotFound:PropTypes.bool.isRequired
+};
+
+
 function mapStateToProps({ questions, authUser, users }, { match }) {
   let question,
     author,

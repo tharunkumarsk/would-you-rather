@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Header, Segment, Grid, Image } from "semantic-ui-react";
 import QuestionList from "./QuestionList";
 import { connect } from "react-redux";
+import PropTypes from 'prop-types';
+
 
 class UserInformation extends Component {
   render() {
@@ -27,6 +29,16 @@ class UserInformation extends Component {
     );
   }
 }
+
+UserInformation.propTypes = {
+  question:PropTypes.object.isRequired,
+  author:PropTypes.object.isRequired,
+  questionId:PropTypes.string.isRequired,
+  answered:PropTypes.bool.isRequired,
+  btnContent:PropTypes.string.isRequired
+
+};
+
 function mapStateToProps({ users, questions }, { questionId }) {
   let question, author;
   if (questionId !== undefined) {

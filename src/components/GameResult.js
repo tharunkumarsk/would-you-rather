@@ -9,6 +9,8 @@ import {
   Label
 } from "semantic-ui-react";
 import { connect } from "react-redux";
+import PropTypes from 'prop-types';
+
 
 class GameResult extends Component {
   render() {
@@ -109,6 +111,15 @@ class GameResult extends Component {
     );
   }
 }
+
+GameResult.propTypes = {
+  question:PropTypes.object.isRequired,
+  user:PropTypes.object.isRequired,
+  author:PropTypes.object.isRequired,
+  authUser:PropTypes.string.isRequired,
+  questionId:PropTypes.string.isRequired
+};
+
 function mapStateToProps({ questions, authUser, users }, { questionId }) {
   let question, user;
   if (questions && authUser && users) {

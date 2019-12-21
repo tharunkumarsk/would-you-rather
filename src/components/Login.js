@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Form, Grid, Segment, Header } from "semantic-ui-react";
 import { setAuthUserID } from "../actions/authUser";
 import { connect } from "react-redux";
+import PropTypes from 'prop-types';
+
 
 class Login extends Component {
   state = {
@@ -69,6 +71,10 @@ class Login extends Component {
     );
   }
 }
+
+Login.propTypes = {
+  users:PropTypes.object.isRequired
+};
 
 function mapStateToProps({ users }) {
   if (users) {

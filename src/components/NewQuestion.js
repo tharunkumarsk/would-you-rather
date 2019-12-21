@@ -3,6 +3,8 @@ import { Divider, Grid, Segment, Form ,Dimmer,Loader} from "semantic-ui-react";
 import { handleSaveQuestion } from '../actions/questionList';
 import { connect } from "react-redux";
 import { Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
 
 
 class NewQuestion extends Component {
@@ -73,6 +75,11 @@ class NewQuestion extends Component {
     )
   }
 }
+
+NewQuestion.propTypes = {
+  authUser:PropTypes.string.isRequired
+
+};
 
 function mapStateToProps({authUser}) {
   

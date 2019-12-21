@@ -3,6 +3,8 @@ import { Menu, Responsive, Image, Button } from "semantic-ui-react";
 import { NavLink } from "react-router-dom";
 import { connect } from "react-redux";
 import { setAuthUserID } from "../actions/authUser";
+import PropTypes from 'prop-types';
+
 
 class NavBar extends Component {
   handleLogout = e => {
@@ -47,6 +49,14 @@ class NavBar extends Component {
     );
   }
 }
+
+NavBar.propTypes = {
+  authUser:PropTypes.string.isRequired,
+  users:PropTypes.object.isRequired,
+
+};
+
+
 function mapStateToProps({ users, authUser }) {
   return {
     users,

@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Grid, Tab, Menu, Label,Header } from "semantic-ui-react";
 import UserInformation from "./UserInformation";
 import { connect } from "react-redux";
+import PropTypes from 'prop-types';
+
 /**
  * This is the pannel displayed for answered and unanswered questions
  * And also the content inside the pannel will be rendered by child component
@@ -60,7 +62,10 @@ const panes = allQuestions => {
   ];
 };
 
+
+
 class HomePage extends Component {
+
   render() {
     const { questions } = this.props;
     return (
@@ -75,6 +80,12 @@ class HomePage extends Component {
     );
   }
 }
+
+HomePage.propTypes = {
+  questions:PropTypes.object.isRequired
+};
+
+
 /**
  * Filter the answered question from question list
  * @param {all the answered IDs of the user} ids

@@ -8,8 +8,11 @@ import {
   Divider
 } from "semantic-ui-react";
 import { connect } from "react-redux";
+import PropTypes from 'prop-types';
+
 
 export class LeadersDashBoard extends Component {
+
   render() {
     const { userInfo } = this.props;
 
@@ -56,6 +59,12 @@ export class LeadersDashBoard extends Component {
     );
   }
 }
+
+
+LeadersDashBoard.propTypes = {
+  userInfo:PropTypes.array.isRequired
+};
+
 function mapStateToProps({ users }) {
   const userInfo = Object.values(users)
     .map(user => ({
