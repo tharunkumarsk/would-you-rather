@@ -1,9 +1,9 @@
 
 ## Installation
 
-Clone the repository,and use NPM to install the dependencies.
+Clone the repository,and use NPM to install the project dependencies.
 
-npm install
+- `npm install`
 
 ## To start the application
 
@@ -19,42 +19,87 @@ This automatically opens the below URL with app running
 ![Plan](./images/Project_Plan.jpg)
 
 
-### App Functionality
+## App Functionality
 
-The person using your application should have a way of impersonating/logging in as an existing user. (This could be as simple as having a login box that appears at the root of the application that lets the user select a name from the list of existing users. Alternatively, you could create your own account creation process to allow a user to sign up for an account.) Your application should work correctly regardless of which user is selected. Once the user logs in, the home page should be shown.
+## Login and landing page
 
-We always want to make sure we know who the logged in user is, so information about the logged in user should appear on the page. If someone tries to navigate anywhere by entering the address in the address bar, the user is asked to sign in and then the requested page is shown. The application allows the user to log out and log back in.
+- The person using this application will have a way of logging in as an existing user,By selecting the user name in a drop down.
+- The application works regardless of which evenr user is selected. 
+- Once the user logs in, the home page will be shown with logged in user in the navigation bar.
+- When user entering the address in the address bar, the user will asked to sign in agaiin and will land on the requested page.
+- For a logged in user the application allows log out and take him/her to default login page.
 
-Once the user logs in, the user should be able to toggle between his/her answered and unanswered polls on the home page, which is located at the root. The polls in both categories are arranged from the most recently created (top) to the least recently created (bottom). The unanswered questions should be shown by default, and the name of the logged in user should be visible on the page.
+## List of questions page/Home page
 
-What would be the point of seeing answered and unanswered polling questions if we couldn’t actually vote or see the results? Each polling question should link to the details of that poll. The details of each poll should be available at questions/:question_id.
+- Once the user logs in, the user will be able to toggle between his/her answered and unanswered questions on the home page (Technically root page) 
+- The question in both categories are arranged from the most recently created (top) to the least recently created (bottom). 
+- And the unanswered questions tab will be shown by default
 
-When a poll is clicked on the home page, the following is shown:
+## Question details & result page
+
+- Selcting each question will take user to details of that question ,which will be available at questions/:question_id.
+- Based on the question category it will show up either result or vote for the question in the same route above
+
+# Answering for a question page
+  Thig page contains
 
 - Text “Would You Rather”;
-- Avatar of the user who posted the polling question; and
-- Two options.
+- Avatar of the user who posted the question
+- Two options with radio button
+- And submit the answer which takes to result page (described below)
+- The Same question will appear in the “Answered” Tab with updated count
 
-## For answered polls, each of the two options contains the following:
+## Result page 
+- This page will have 2 entries 
+1. directly from answerd segment 
+2. After submitting the answer for a question
 
-- Text of the option;
-- Number of people who voted for that option; and
-- Percentage of people who voted for that option.
+This page contains
 
-## The option selected by the logged-in user should be clearly marked.
+- Text “Result”;
+- Avatar of the user who posted the question
+- Text of the options
+- Number of people who voted for each option
+- And a bar with percentage of people who voted for that option
+- An icon which represents the option selected by the logged-in user
 
-Since we want to make sure our application creates a good user experience, the application should show a 404 page if the user is trying to access a poll that does not exist. (Please keep in mind that newly created polls will not be accessible at their url because of the way the backend is set up in this application.) It should also display a navigation bar so that the user can easily navigate anywhere in the application.
+## Leader's dashboard 
 
-So what happens when someone votes in a poll? Upon voting in a poll, all of the information of an answered poll should be displayed. The user’s response should be recorded and clearly visible on the poll details page. Users can only vote once per poll; they shouldn’t be allowed to change their answer after they’ve voted -- no cheating allowed! When the user comes back to the home page, the polling question should appear in the “Answered” column.
+- This page will be available at /leaderboard route.
+
+ This page contains
+- User’s name;
+- User’s Avatar;
+- Number of questions they asked 
+- Number of questions they answered
+- User will ordered in descending order based on the sum of the number of questions they’ve asked and the number of questions they’ve answered
+
+### Create new question Page
+
+- This page will be available at /add route.
+
+This from contains
+- Text “Would You Rather” 
+- Text field to creating two options. 
+- Submit button 
+- Upon submitting the form, a new question will be created
+- the user should be taken to the home page
+- The new  question will appear in the unanswered tab.
+
+## Depplinked routes
+- When ever user tries to typing the below address into the address bar they should as for sigin and the land on the specific page
+1. /add 
+2. /leaderboard
+3. questions/:Valid id.
 
 It would be no fun to vote in polls if we couldn’t post our own questions! The form for posting new polling questions should be available at the /add route. The application should show the text “Would You Rather” and have a form for creating two options. Upon submitting the form, a new poll should be created, the user should be taken to the home page, and the new polling question should appear in the correct category on the home page.
 
-But how can we know how many questions each user has asked and answered? Let’s get some healthy competition going here! The application should have a leaderboard that’s available at the /leaderboard route. Each entry on the leaderboard should contain the following:
+## 404 Page
+ To Avoid errors on the screen/to have a better user exprience in below 
+ in this page navigation bar is always displayed ,so that the user can easily navigate anywhere in the application.
 
-- User’s name;
-- User’s picture;
-- Number of questions the user asked; and
-- Number of questions the user answered
-Users should be ordered in descending order based on the sum of the number of questions they’ve asked and the number of questions they’ve answered. The more questions you ask and answer, the higher up you move.
+ - If the user is trying to access a poll that does not exist. 
+ - Any other invalid URL accessed from browser
 
-The user should be able to navigate to the leaderboard, to a specific question, and to the form that allows the user to create a new poll both from within the app and by typing in the address into the address bar. To make sure we’re showing the data that is relevant to the user, the application should require the user to be signed in order to access those pages.
+
+

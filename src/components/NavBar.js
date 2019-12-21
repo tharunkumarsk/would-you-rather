@@ -16,7 +16,7 @@ class NavBar extends Component {
     return (
       <Responsive as={Menu} minWidth={651} color="green" pointing>
         <Menu.Item name="Home" as={NavLink} to="/" exact />
-        <Menu.Item name="New Question" as={NavLink} to="/add" />
+        <Menu.Item name="Create new Question" as={NavLink} to="/add" />
         <Menu.Item name="Leader Dashboard" as={NavLink} to="/leaderboard" />
         <Menu.Menu position="right">
           <Menu.Item>
