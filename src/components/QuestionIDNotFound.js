@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
+import { withRouter } from 'react-router-dom';
 
 export class QuestionIDNotFound extends Component {
   state = {
@@ -15,14 +16,19 @@ export class QuestionIDNotFound extends Component {
     if (this.state.goToHome === true) {
       return <Redirect to="/" />;
     }
-
+    debugger
+    const pathName = this.props.location.pathname;
+    let errorText = "This is a invalid page"
+    if(pathName.includes("/questions/") ){
+    errorText = "The Question you are looking for Doesn't exists anymore!!!"
+    }
     return (
       <div className="equal width row">
         <div className="column">
           <h1 className="ui icon center aligned header">
             <i aria-hidden="true" className="game icon"></i>404
             <div className="sub header">
-              The Question you are looking for Doesn't exists anymore!!!
+              {errorText}
             </div>
           </h1>
         </div>
@@ -42,4 +48,4 @@ export class QuestionIDNotFound extends Component {
   }
 }
 
-export default QuestionIDNotFound;
+export default withRouter(QuestionIDNotFound);
