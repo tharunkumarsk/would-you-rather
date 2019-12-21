@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import { withRouter } from 'react-router-dom';
 
-export class QuestionIDNotFound extends Component {
+export class Page404 extends Component {
   state = {
     goToHome: false
   };
@@ -18,7 +18,7 @@ export class QuestionIDNotFound extends Component {
     }
     debugger
     const pathName = this.props.location.pathname;
-    let errorText = "This is a invalid page"
+    let errorText = "This is an invalid page !!!"
     if(pathName.includes("/questions/") ){
     errorText = "The Question you are looking for Doesn't exists anymore!!!"
     }
@@ -48,4 +48,4 @@ export class QuestionIDNotFound extends Component {
   }
 }
 
-export default withRouter(QuestionIDNotFound);
+export default withRouter(Page404);

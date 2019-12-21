@@ -10,7 +10,7 @@ import { connect } from "react-redux";
 import { handlePageLoadData } from "../actions/shared";
 import Login from "./Login";
 import LoadingBar from "react-redux-loading";
-import QuestionIDNotFound from "./QuestionIDNotFound";
+import Page404 from "./404Page";
 
 class App extends React.Component {
   componentDidMount = () => {
@@ -34,14 +34,14 @@ class App extends React.Component {
                   <Route path="/add" component={NewQuestion} />
                   <Route path="/leaderboard" component={DashBoard} />
                   <Route
-                    path="/questions/idnotfound"
-                    component={QuestionIDNotFound}
+                    path="/questions/404Page"
+                    component={Page404}
                   />
                   <Route
                     path="/questions/:questionId"
                     component={AnsweForQuestion}
                   />
-                  <Route component={QuestionIDNotFound} />
+                  <Route component={Page404} />
                 </Switch>
               </Container>
             </Fragment>

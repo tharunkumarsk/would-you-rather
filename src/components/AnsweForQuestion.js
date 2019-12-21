@@ -37,7 +37,7 @@ class AnsweForQuestion extends Component {
   render() {
     const { question, author, idNotFound } = this.props;
     if (idNotFound === true) {
-      return <Redirect to="/questions/idnotfound" />;
+      return <Redirect to="/questions/404Page" />;
     }
     if (
       this.state.submitSuccess === true ||
